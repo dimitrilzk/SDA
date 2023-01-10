@@ -14,7 +14,7 @@ namespace SDA.Models
         public string LuogoNascita { get; set; }
         public string Residenza { get; set; }
         public DateTime DataNascita { get; set; }
-        public int PartitaIva { get; set; }
+        public string PartitaIva { get; set; }
         public string IndirizzoSede { get; set; }
         public string CittaSede { get; set; }
 
