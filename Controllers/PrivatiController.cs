@@ -37,5 +37,28 @@ namespace SDA.Controllers
             con.Close();
             return View(ListaClienti);
         }
+        public ActionResult AggiungiNuovo()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AggiungiNuovo(Clienti c)
+        {
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["SDADB"].ToString();
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Parameters.AddWithValue("@Nome", c.Nome);
+            cmd.Parameters.AddWithValue("@Cognome", c.Cognome);
+            cmd.Parameters.AddWithValue("@CodiceFiscale", c.CodiceFiscale);
+            cmd.Parameters.AddWithValue("@LuogoNascita", c.LuogoNascita);
+            cmd.Parameters.AddWithValue("@Residenza", c.Residenza);
+            cmd.Parameters.AddWithValue("@DataNascita", c.DataNascita);
+            cmd.CommandText = "insert into clienti values(@Nome, @Cognome, @CodiceFiscale, @LuogoNascita, @Residenza, @DataNascita)";
+            cmd.Connection= con;
+            cmd.ExecuteNonQuery();
+            con.Close();
+            return View();
+        }
     }
 }
