@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SDA.Models.Clienti>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Gestione Privati</h2>
+
+<p>
+    @Html.ActionLink("Aggiungi nuovo cliente", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cognome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodiceFiscale)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LuogoNascita)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Residenza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataNascita)
+        </th>
+        <th>Gestione</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cognome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodiceFiscale)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LuogoNascita)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Residenza)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataNascita)
+        </td>
+        <td>
+            @Html.ActionLink("Modifica", "Edit", new {  id=item.IdCliente  })
+            @Html.ActionLink("Cancella", "Delete", new { id=item.IdCliente })
+        </td>
+    </tr>
+}
+
+</table>
