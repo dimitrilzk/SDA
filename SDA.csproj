@@ -203,6 +203,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Privati\Index.cshtml" />
     <Content Include="Views\Privati\AggiungiNuovo.cshtml" />
+    <Content Include="Views\Privati\Modifica.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

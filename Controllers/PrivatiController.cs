@@ -61,5 +61,50 @@ namespace SDA.Controllers
             con.Close();
             return View();
         }
+        public ActionResult Modifica(int id)
+        {
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["SDADB"].ToString();
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.CommandText = "select * from clienti where IdCliente = @id";
+            cmd.Connection= con;
+            SqlDataReader reader = cmd.ExecuteReader();
+            Clienti Cliente = new Clienti();
+            while (reader.Read())
+            {
+                Cliente.IdCliente = Convert.ToInt32(reader["IdCliente"]);
+                Cliente.Nome = reader["Nome"].ToString();
+                Cliente.Cognome = reader["Cognome"].ToString();
+                Cliente.CodiceFiscale = reader["CodiceFiscale"].ToString();
+                Cliente.LuogoNascita = reader["LuogoNascita"].ToString();
+                Cliente.Residenza = reader["Residenza"].ToString();
+                Cliente.DataNascita = Convert.ToDateTime(reader["DataNascita"]);
+            }
+            con.Close();
+            return View(Cliente);
+        }
+        [HttpPost]
+        public ActionResult Modifica(Clienti c,int id)
+        {
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["SDADB"].ToString();
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Parameters.AddWithValue("@IdCliente", id);
+            cmd.Parameters.AddWithValue("@Nome", c.Nome);
+            cmd.Parameters.AddWithValue("@Cognome", c.Cognome);
+            cmd.Parameters.AddWithValue("@CodiceFiscale", c.CodiceFiscale);
+            cmd.Parameters.AddWithValue("@LuogoNascita", c.LuogoNascita);
+            cmd.Parameters.AddWithValue("@Residenza", c.Residenza);
+            cmd.Parameters.AddWithValue("@DataNascita", c.DataNascita);
+            cmd.CommandText = "update clienti set Nome = @Nome, Cognome = @Cognome, CodiceFiscale = @CodiceFiscale, LuogoNascita = @LuogoNascita," +
+                "Residenza = @Residenza, DataNascita = @DataNascita where IdCliente = @IdCliente";
+            cmd.Connection= con;
+            cmd.ExecuteNonQuery();
+            con.Close();
+            return RedirectToAction("Index");
+        }
     }
 }
