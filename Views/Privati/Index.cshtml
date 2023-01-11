@@ -5,6 +5,11 @@
 }
 
 <h2>Gestione Privati</h2>
+@if (TempData["messaggio"] != null)
+            {
+                <p class="alert alert-danger">@TempData["messaggio"]</p>
+            }
+
 
 <p>
     @Html.ActionLink("Aggiungi nuovo cliente", "AggiungiNuovo")
@@ -29,7 +34,10 @@
         <th>
             @Html.DisplayNameFor(model => model.DataNascita)
         </th>
-        <th>Gestione</th>
+        <th>
+            Gestione
+            
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -54,7 +62,7 @@
         </td>
         <td>
             @Html.ActionLink("Modifica", "Modifica", new {  id=item.IdCliente  })
-            @Html.ActionLink("Cancella", "Delete", new { id=item.IdCliente })
+            @Html.ActionLink("Cancella", "Elimina", new { id=item.IdCliente })
         </td>
     </tr>
 }

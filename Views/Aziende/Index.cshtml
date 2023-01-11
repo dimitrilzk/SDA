@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SDA.Models.Clienti>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Gestione Aziende</h2>
+@if (TempData["messaggio"] != null)
+{
+    <p class="alert alert-danger">@TempData["messaggio"]</p>
+}
+
+<p>
+    @Html.ActionLink("Aggiungi nuova Azienda", "AggiungiAzienda")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeAzienda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartitaIva)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IndirizzoSede)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CittaSede)
+        </th>
+        <th>Gestione</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeAzienda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PartitaIva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IndirizzoSede)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CittaSede)
+            </td>
+            <td>
+                @Html.ActionLink("Modifica", "Modifica", new { id = item.IdCliente })
+                @Html.ActionLink("Cancella", "Elimina", new { id = item.IdCliente })
+            </td>
+        </tr>
+    }
+
+</table>

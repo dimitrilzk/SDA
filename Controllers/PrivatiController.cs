@@ -19,7 +19,7 @@ namespace SDA.Controllers
             con.ConnectionString = ConfigurationManager.ConnectionStrings["SDADB"].ToString();
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "select IdCliente, Nome, Cognome, CodiceFiscale, LuogoNascita, Residenza, DataNascita  from Clienti";
+            cmd.CommandText = "select IdCliente, Nome, Cognome, CodiceFiscale, LuogoNascita, Residenza, DataNascita  from Clienti where CodiceFiscale is not null";
             cmd.Connection= con;
             SqlDataReader reader = cmd.ExecuteReader();
             while(reader.Read())
@@ -59,7 +59,7 @@ namespace SDA.Controllers
             cmd.Connection= con;
             cmd.ExecuteNonQuery();
             con.Close();
-            return View();
+            return RedirectToAction("Index");
         }
         public ActionResult Modifica(int id)
         {
@@ -104,6 +104,20 @@ namespace SDA.Controllers
             cmd.Connection= con;
             cmd.ExecuteNonQuery();
             con.Close();
+            return RedirectToAction("Index");
+        }
+        public ActionResult Elimina(int id)
+        {
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["SDADB"].ToString();
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.CommandText = "delete from clienti where IdCliente= @id";
+            cmd.Connection= con;
+            cmd.ExecuteNonQuery();
+            con.Close();
+            TempData["messaggio"] = "Il cliente è stato cancellato";
             return RedirectToAction("Index");
         }
     }
