@@ -54,7 +54,8 @@ namespace SDA.Controllers
             cmd.Parameters.AddWithValue("@LuogoNascita", c.LuogoNascita);
             cmd.Parameters.AddWithValue("@Residenza", c.Residenza);
             cmd.Parameters.AddWithValue("@DataNascita", c.DataNascita);
-            cmd.CommandText = "insert into clienti values(@Nome, @Cognome, @CodiceFiscale, @LuogoNascita, @Residenza, @DataNascita)";
+            cmd.CommandText = "insert into clienti (Nome, Cognome, CodiceFiscale, LuogoNascita, Residenza, DataNascita)" +
+                                " values(@Nome, @Cognome, @CodiceFiscale, @LuogoNascita, @Residenza, @DataNascita)";
             cmd.Connection= con;
             cmd.ExecuteNonQuery();
             con.Close();
