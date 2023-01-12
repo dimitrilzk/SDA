@@ -19,7 +19,8 @@ namespace SDA.Controllers
             con.ConnectionString = ConfigurationManager.ConnectionStrings["SDADB"].ToString();
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "select IdCliente, Nome, Cognome, CodiceFiscale, LuogoNascita, Residenza, DataNascita  from Clienti where CodiceFiscale is not null";
+            cmd.CommandText = "select IdCliente, Nome, Cognome, CodiceFiscale, LuogoNascita, Residenza, DataNascita " +
+                " from Clienti where CodiceFiscale is not null";
             cmd.Connection= con;
             SqlDataReader reader = cmd.ExecuteReader();
             while(reader.Read())

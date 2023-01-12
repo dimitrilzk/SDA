@@ -18,8 +18,7 @@ namespace SDA.Models
         public DateTime DataPartenza { get; set; }
         public DateTime DataArrivo { get; set; }
         public int IdStatoSpedizione { get; set; }
-
-
+        public string NomeMittente { get; set; }
 
     }
 }

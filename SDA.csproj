@@ -120,6 +120,7 @@
     <Compile Include="Controllers\AziendeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PrivatiController.cs" />
+    <Compile Include="Controllers\SpedizioniController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -208,6 +209,7 @@
     <Content Include="Views\Aziende\Index.cshtml" />
     <Content Include="Views\Aziende\AggiungiAzienda.cshtml" />
     <Content Include="Views\Aziende\Modifica.cshtml" />
+    <Content Include="Views\Spedizioni\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
